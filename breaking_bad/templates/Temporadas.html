@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'breaking_bad/Styles.css'%}">
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'home'%}">Home</a>
+        <input type="text" placeholder="Search..">
+    </div>
+    <div class = "titulo">
+        {{serie}}
+    </div>
+    <div> 
+        {% for idx, temp in temporadas.items %}
+        <button type="button" class="collapsible">Temporada {{idx}}</button>
+        <div class="content">
+            {% for episode in temp%}
+                <p class = "text">
+                    <a class="button" href="{% url 'episodios' episode.episode_id %}">{{episode.title}}</a>
+                </p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+</html>

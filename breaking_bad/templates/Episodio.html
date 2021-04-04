@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'breaking_bad/Styles.css'%}">
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'home'%}">Home</a>
+        <input type="text" placeholder="Search..">
+    </div>
+    <div class = "titulo">
+        {{response.title}}
+    </div>
+    <div> 
+    </div>
+</body>
+</html>

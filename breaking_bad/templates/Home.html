@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'breaking_bad/Styles.css'%}">
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href=''>Home</a>
+        <input type="text" placeholder="Search..">
+    </div>
+    <div>
+        <div class="container">
+          <img src="{% static 'breaking_bad/1366_2000.jpg'%}" class="image" style="width:100%">
+            <div class="middle">
+              <a class="button" href = "{% url 'temporadas' 'Breaking+Bad' %}">Temporadas Breaking Bad</a>
+            </div>
+          </div>
+          <div class="container">
+            <img src="{% static 'breaking_bad/better-call-saul-scaled.jpeg'%}" class="image" style="width:100%">
+              <div class="middle">
+                <a class="button" href = "{% url 'temporadas' 'Better+Call+Saul' %}">Temporadas Better Call Saul</a>
+              </div>
+          </div>
+    </div>
+</body>
+</html>
