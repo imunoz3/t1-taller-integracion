@@ -4,3 +4,4 @@ gunicorn==20.1.0
 psycopg2-binary==2.8.6
 pytz==2019.2
 whitenoise==5.2.0
+requests==2.25.1
