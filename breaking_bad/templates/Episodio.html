@@ -10,9 +10,24 @@
         <input type="text" placeholder="Search..">
     </div>
     <div class = "titulo">
-        {{response.title}}
+        {{episodio.title}}
     </div>
     <div> 
+        <div class="container_episodio"> 
+            <ul>
+                <p><span style= "color:grey">Serie: </span>{{serie}}</p>
+                <p><span style= "color:grey">Temporada: </span>{{episodio.season}}</p>
+                <p><span style= "color:grey">Episodio: </span>{{episodio.episode}}</p>
+                <p><span style= "color:grey">Fecha: </span>{{episodio.air_date}}</p>
+                <p><span style= "color:grey">Personajes: </span>
+                    {% for personaje in episodio.characters %}
+                    <ul><a style= "text-decoration:none;color:rgb(225, 225, 225);cursor:pointer" href = "{% url 'personajes' serie personaje %}">{{personaje}}</a></ul>
+                    {% endfor %}
+                <p>
+                
+            </ul>
+        </div>
+            
     </div>
 </body>
 </html>

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'breaking_bad/Styles.css'%}">
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'home'%}">Home</a>
+        <input type="text" placeholder="Search..">
+    </div>
+    <div class = "titulo">
+        {{personaje.name}}
+    </div>
+    <div> 
+        <div class="container_episodio"> 
+            <ul>
+                <p><img src= {{personaje.img}} style = "width:20%"></img></p>
+                <p><span style= "color:grey">Nombre: </span>{{personaje.name}}</p>
+                <p><span style= "color:grey">Apodo: </span>{{personaje.nickname}}</p>
+                <p><span style= "color:grey">Ocupación: </span>
+                    {% for ocup in personaje.occupation %}
+                        {{ocup}}
+                    {% endfor %}
+                </p>
+                <p><span style= "color:grey">Status: </span>{{personaje.status}}</p>
+                <p><span style= "color:grey">Temporadas Breaking Bad: </span>
+                    {% for temporada in personaje.appearance %}
+                        <a style= "text-decoration:none;color:rgb(225, 225, 225);cursor:pointer" href = "{% url 'temporadas' 'Breaking Bad' temporada%}">{{temporada}}</a>
+                    {% endfor %}
+                </p>
+                <p><span style= "color:grey">Temporadas Better Call Saul: </span>
+                    {% for temporada in personaje.better_call_saul_appearance %}
+                        <a style= "text-decoration:none;color:rgb(225, 225, 225);cursor:pointer" href = "{% url 'temporadas' 'Better Call Saul' temporada%}">{{temporada}}</a>
+                    {% endfor %}
+                </p>
+                <p><span style= "color:grey">Interpretado/a por: </span>{{personaje.portrayed}}</p>
+                <p><span style= "color:grey">Citas: </span>
+                    {% for cita in citas %}
+                        <li><a style= "text-decoration:none;color:rgb(225, 225, 225)">{{cita.quote}}</a></li>
+                    {% endfor %}
+                </p>
+            </ul>
+        </div>     
+    </div>
+</body>
+</html>

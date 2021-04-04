@@ -17,8 +17,8 @@
         <button type="button" class="collapsible">Temporada {{idx}}</button>
         <div class="content">
             {% for episode in temp%}
-                <p class = "text">
-                    <a class="button" href="{% url 'episodios' episode.episode_id %}">{{episode.title}}</a>
+                <p>
+                    <a class="button_temp" href="{% url 'episodios' serie episode.episode_id %}"> {{episode.episode}}. {{episode.title}}</a>
                 </p>
             {% endfor %}
         </div>
@@ -38,6 +38,10 @@
           content.style.display = "block";
         }
       });
+    }
+    var lastItem = parseInt(window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
+    if (lastItem  > 0){
+      coll[lastItem-1].click();
     }
 </script>
 </html>
