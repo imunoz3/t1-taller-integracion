@@ -21,6 +21,7 @@ urlpatterns = [
     path('', views.home, name = 'home'),
     path('temporadas/<str:serie>/<int:num_temp>', views.temporadas, name = 'temporadas'),
     path('episodios/<str:serie>/<int:episode_id>/', views.episodios, name = 'episodios'),
-    path('personajes/<str:serie>/<str:character_name>/', views.personajes, name = 'personajes'),
+    path('personajes/<str:character_name>/', views.personajes, name = 'personajes'),
+    path('search/', views.searchbar, name = 'searchbar'),
     path('admin/', admin.site.urls)
 ]

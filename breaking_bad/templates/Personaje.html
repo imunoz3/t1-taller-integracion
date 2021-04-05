@@ -6,8 +6,11 @@
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="{% url 'home'%}">Home</a>
-        <input type="text" placeholder="Search..">
+        <a href="{% url 'home' %}">Home</a>
+        <form action="{% url 'searchbar' %}" method="get">
+          <input name="query" type="text" placeholder="Search here.." >
+          <button type="submit" name="button">Submit</button>
+        </form>
     </div>
     <div class = "titulo">
         {{personaje.name}}

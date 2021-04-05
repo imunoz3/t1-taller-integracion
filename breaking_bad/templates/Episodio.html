@@ -6,8 +6,11 @@
 </head>
 <body>
     <div class="topnav">
-        <a class="active" href="{% url 'home'%}">Home</a>
-        <input type="text" placeholder="Search..">
+        <a href="{% url 'home' %}">Home</a>
+        <form action="{% url 'searchbar' %}" method="get">
+          <input name="query" type="text" placeholder="Search here.." >
+          <button type="submit" name="button">Submit</button>
+        </form>
     </div>
     <div class = "titulo">
         {{episodio.title}}
@@ -21,7 +24,7 @@
                 <p><span style= "color:grey">Fecha: </span>{{episodio.air_date}}</p>
                 <p><span style= "color:grey">Personajes: </span>
                     {% for personaje in episodio.characters %}
-                    <ul><a style= "text-decoration:none;color:rgb(225, 225, 225);cursor:pointer" href = "{% url 'personajes' serie personaje %}">{{personaje}}</a></ul>
+                    <ul><a style= "text-decoration:none;color:rgb(225, 225, 225);cursor:pointer" href = "{% url 'personajes' personaje %}">{{personaje}}</a></ul>
                     {% endfor %}
                 <p>
                 

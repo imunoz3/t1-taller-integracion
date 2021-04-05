@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'breaking_bad/Styles.css'%}">
+</head>
+<body>
+    <div class="topnav">
+        <a href="{% url 'home' %}">Home</a>
+        <form action="{% url 'searchbar' %}" method="get">
+          <input name="query" type="text" placeholder="Search here.." >
+          <button type="submit" name="button">Submit</button>
+        </form>
+    </div>
+    <div class = "titulo">
+        Resultados Busqueda
+    </div>
+    <div class = container_search>
+        {% for personaje in response %}
+          <img src= {{personaje.img}} style="width:20%">
+          <p><a style= "text-decoration:none;color:rgb(225, 225, 225);cursor:pointer" href = "{% url 'personajes' personaje.name%}"><span style= "color:grey">Nombre: </span>{{personaje.name}}</a></p>
+        {% endfor %}
+    </div>
+</body>
+</html>

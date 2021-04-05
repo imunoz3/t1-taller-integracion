@@ -24,7 +24,7 @@ def episodios(request, serie, episode_id):
     response[0]["air_date"] = datetime.datetime.strptime(response[0]["air_date"], '%Y-%m-%dT%H:%M:%S.%fZ').strftime("%d/%m/%Y")
     return render(request, 'Episodio.html', {'serie':serie, 'episodio':response[0]})
 
-def personajes(request, serie, character_name):
+def personajes(request, character_name):
     response = requests.get(f'https://tarea-1-breaking-bad.herokuapp.com/api/characters?name={character_name}').json()
     last_ocup = response[0]["occupation"][len(response[0]["occupation"])-1]
     new_ocups = []
@@ -37,4 +37,22 @@ def personajes(request, serie, character_name):
 
     response_citas = requests.get(f'https://tarea-1-breaking-bad.herokuapp.com/api/quote?author={character_name}').json()
     
-    return render(request, 'Personaje.html', {'serie':serie, 'personaje':response[0], 'citas': response_citas})
+    return render(request, 'Personaje.html', {'personaje':response[0], 'citas': response_citas})
+
+def searchbar(request):
+    srh = request.GET['query']
+    response = []
+    hay_offset = True
+    offset = 0
+    while hay_offset:
+        new_response = requests.get(f'https://tarea-1-breaking-bad.herokuapp.com/api/characters?name={srh}&limit=10&offset={offset}').json()
+        print(new_response)
+        if len(new_response) > 0:
+            for item in new_response:
+                response.append(item)
+        else:
+            hay_offset = False
+        
+        offset+=10
+
+    return render(request, 'Search.html', {'response':response})
