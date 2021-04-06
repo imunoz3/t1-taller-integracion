@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import requests
 import datetime
 
+from django.http import Http404
 
 # Create your views here.
 def home(request):
@@ -11,7 +12,11 @@ def home(request):
 def temporadas(request, serie, num_temp):
     response = requests.get(f'https://tarea-1-breaking-bad.herokuapp.com/api/episodes?series={serie}').json()
     temporadas = {}
-    numero_temporadas = int(response[len(response)-1]['season'])
+    numero_temporadas = 0
+    for episodio in response:
+        numero_temp_episodio = int(episodio['season'])
+        if numero_temp_episodio > numero_temporadas:
+            numero_temporadas = numero_temp_episodio
     for i in range(numero_temporadas):
         temporadas[i+1] = []
     for json in response:
